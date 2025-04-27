@@ -1,3 +1,4 @@
+
 from flask import Flask, request, jsonify, render_template
 import json, os, difflib
 from duckduckgo_search import DDGS
@@ -47,7 +48,7 @@ def search_web(query):
 def summarize_text(text):
     sentences = text.split('.')
     important = [s.strip() for s in sentences if len(s.strip()) > 20]
-    return '. '.join(important[:2]) + '.' if important else ''
+    return '.'.join(important[:2]) + '.' if important else ''
 
 @app.route('/')
 def index():
@@ -78,4 +79,5 @@ def chat():
     return jsonify({ "reply": reply })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
