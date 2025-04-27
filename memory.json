@@ -1,0 +1,11 @@
+{
+  "안녕": "안녕하세요! 무엇을 도와드릴까요?",
+  "오늘 날씨 어때?": "지역마다 다르지만, 대체로 맑거나 흐릴 수 있어요.",
+  "고마워": "언제든지요!",
+  "마인크래프트 출시일": "Mojang Studios 에서 2009년 [30] 처음 발매한 샌드박스 형식의 비디오 게임. 이름처럼 채광 (Mine)과 제작 (Craft)을 하는 게임으로 흔히 알려져 있다.\n\n출처: https://namu.wiki/w/마인크래프트)",
+  "firebase 이용법": "firebase init 작업은 로컬 프로젝트를 Firebase 프로젝트에 연결하기 위한 명령어입니다. ※ CLI 를 이용하기 위해서는 운영체제의 command line 명령어를 알아야 합니다.\n\n출처: https://velog.io/@angelo/Firebase-사용-방법)",
+  "마인크래프트": "Minecraft는 나만의 세상을 만들고 탐험하고 살아남는 게임입니다. Minecraft 샌드박스, Minecraft Dungeons, Minecraft Legends, Minecraft Education 등 다양한 게임 모드와 컬렉션을 살펴보고, 최신 소식과 다운로드 정보를 확인하세요.\n\n출처: https://www.minecraft.net/ko-kr)",
+  "파이썬 3": "How to verify your downloaded files are genuine Sigstore verification. Starting with the Python 3.\n\n출처: https://www.python.org/downloads/)",
+  "닌텐도 스위치 2 스펙": "Joy-Con 2 의 C 버튼 및 본체 내장 마이크와 연동해 작동하는 시스템이다. 구형 조이콘 1이나 구형 프로 컨트롤러도 홈 버튼으로 C 버튼의 기능에 접근할 수 있어, 기존에 사용하던 오래된 컨트롤러도 스위치 2에서 사용 가능하다.\n\n출처: https://namu.wiki/w/Nintendo+Switch+2)",
+  "random 모듈 사용법": "파이썬(Python)에서 난수를 만들기 위해서는 random 모듈을 사용해야 합니다. 이 랜덤 모듈에서 가장 많이 사용되는 함수(메소드)를 정리해봅니다.\n\n출처: https://withcoding.com/88)"
+}
