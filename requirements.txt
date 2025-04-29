@@ -1,2 +1,4 @@
-flask
-duckduckgo-search
+Flask==2.2.2
+requests==2.28.1
+duckduckgo-search==0.5.0
+beautifulsoup4==4.11.1
