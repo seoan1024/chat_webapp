@@ -1,13 +1,12 @@
+
 from flask import Flask, request, jsonify, render_template
 import json, os, difflib
 from duckduckgo_search import DDGS
-import requests
 
 app = Flask(__name__)
 
-# 설정
 HISTORY_FILE = "memory.json"
-ADMIN_PASSWORD = "letmein123"
+ADMIN_PASSWORD = "seoan1024"
 DEFAULT_MEMORY = {
     "안녕": "안녕하세요! 무엇을 도와드릴까요?",
     "오늘 날씨 어때?": "지역마다 다르지만, 대체로 맑거나 흐릴 수 있어요.",
@@ -24,21 +23,18 @@ with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
 vocab_list = list(DEFAULT_MEMORY.keys()) + ["정렬", "리스트", "파이썬", "기억", "검색", "챗봇", "날씨", "시간", "감사", "가격"]
 last_response = ""
 
-# 오타 교정
 def correct_typo(user_input):
     return ' '.join([
         difflib.get_close_matches(w, vocab_list, n=1, cutoff=0.7)[0] if difflib.get_close_matches(w, vocab_list, n=1, cutoff=0.7) else w
         for w in user_input.split()
     ])
 
-# 유사한 질문 찾기
 def find_similar_question(user_input):
     for q in memory:
         if difflib.SequenceMatcher(None, user_input, q).ratio() > 0.75:
             return q
     return None
 
-# 웹 검색
 def search_web(query):
     with DDGS() as ddgs:
         results = list(ddgs.text(query, region='wt-wt', safesearch='Moderate', max_results=1))
@@ -49,15 +45,6 @@ def search_web(query):
                 return f"{body} (출처: {url})" if url else body
     return ""
 
-# 이미지 생성 (Craiyon 웹 서비스 사용)
-def generate_image(prompt):
-    url = "https://www.craiyon.com"
-    headers = {"User-Agent": "Mozilla/5.0"}
-    response = requests.get(url, headers=headers)
-    # Craiyon에서 이미지를 생성하는 방식 (웹 스크래핑 방식)
-    return f"이미지 생성 완료: {url}/generated_image.png"  # 실제 이미지 URL을 반환하는 로직 필요
-
-# 텍스트 요약
 def summarize_text(text):
     sentences = text.split('.')
     important = [s.strip() for s in sentences if len(s.strip()) > 20]
@@ -71,15 +58,9 @@ def index():
 def chat():
     global last_response
     user_input = request.json['message']
-
     if user_input.strip() == ADMIN_PASSWORD:
         reply = '\n'.join([f"Q: {q}\nA: {a}" for q, a in memory.items()])
-    elif "이미지" in user_input:
-        # 이미지 생성 요청 처리
-        prompt = user_input.replace("이미지", "").strip()
-        reply = generate_image(prompt)
     elif "요약" in user_input:
-        # 텍스트 요약 요청 처리
         reply = summarize_text(last_response)
     else:
         corrected = correct_typo(user_input)
@@ -94,7 +75,6 @@ def chat():
             memory[corrected] = reply
             with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
                 json.dump(memory, f, ensure_ascii=False, indent=2)
-    
     last_response = reply
     return jsonify({ "reply": reply })
 
